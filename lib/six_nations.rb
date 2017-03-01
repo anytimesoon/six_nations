@@ -1,5 +1,2 @@
-require "six_nations/version"
-
-module SixNations
-  # Your code goes here...
-end
+require_relative "six_nations/version"
+require_relative "six_nations/cli"
