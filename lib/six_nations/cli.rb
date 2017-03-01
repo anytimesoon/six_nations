@@ -1,34 +1,35 @@
 class SixNations::CLI
 
   def start
-    puts <<~DOC
-      Welcome to the Six Nations Ruby Gem
-      Would you like to see:
-      1. current table
-      2. upcomming fixtures
-      3. find out more about a team
-      4. exit
-    DOC
-
     input = ""
-    
-    while input != "exit"
+
+    while input != "exit" || input != "4"
+      puts <<~DOC
+        Welcome to the Six Nations Ruby Gem
+        Would you like to see:
+        1. current table
+        2. upcomming fixtures
+        3. find out more about a team
+        4. exit
+      DOC
+
       input = gets.strip.downcase
       case input
-      when "1" || "current table"
+      when "1"
         puts "current table"
-      when "2" || "upcomming fixtures"
+      when "2"
         puts "upcomming fixtures"
-      when "3" || "find out more about a team"
+      when "3"
         puts "Which team would you like to know about?"
         requested_team = gets.strip.downcase
         puts "What would you like to know about #{requested_team}?"
         team_info = gets.strip.downcase
         puts "Information you have requested"
-      when "exit"
+      when "4"
         puts "Thanks for playing. See you next time"
+        break
       else
-        puts "I'm not sure what you mean, please choose 1, 2, 3 or exit."
+        puts "I'm not sure what you mean, please choose 1, 2, 3 or 4."
       end
     end
   end
