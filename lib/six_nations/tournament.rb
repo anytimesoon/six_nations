@@ -18,4 +18,13 @@ class SixNations::Tournament
     puts current_ranking[4]
     puts current_ranking[5]
   end
+
+  def team_ranker
+    rank = []
+    @teams.each do |team|
+      pos = team.stats[:position]
+      rank[pos.to_i - 1] = team
+    end
+    rank
+  end
 end#of Tournament
