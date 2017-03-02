@@ -1,10 +1,15 @@
 class SixNations::Tournament
-  attr_accessor :teams
+  attr_accessor :teams, :nations
 
-  @@nations = ["France", "England", "Wales", "Scotland", "Ireland", "Italy"]
+  
   
   def initialize
-    @teams = SixNations::Team.create_all
+    @teams = []
+    @nations = ["France", "England", "Wales", "Scotland", "Ireland", "Italy"]
     SixNations::Team.get_stats
+  end
+
+  def get_teams
+    @teams = SixNations::Team.create_all(@nations)
   end
 end

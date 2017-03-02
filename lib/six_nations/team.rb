@@ -17,8 +17,8 @@ module SixNations
       @@all
     end
 
-    def self.create_all
-      ["France", "England", "Wales", "Scotland", "Ireland", "Italy"].each {|nation| self.new(nation) }
+    def self.create_all(nations)
+      (nations).map {|nation| self.new(nation) }
     end
 
     def self.get_stats
