@@ -1,15 +1,21 @@
-class SixNations::team
-  attr_accessor :stats, :players, :fixtures
-  attr_reader :nation
+module SixNations
+  class Team
+    attr_accessor :stats, :players, :fixtures
+    attr_reader :nation
 
-  @@all = []
+    @@all = []
 
-  def initialize(nation)
-    @nation = nation
-    self.all << self
-  end
+    def initialize(nation)
+      @nation = nation
+      @@all << self
+    end
 
-  def create_all
-    [France, England, Wales, Scotland, Ireland, Italy].each {|country| self.new(country) }
+    def self.all
+      @@all
+    end
+
+    def create_all
+      [France, England, Wales, Scotland, Ireland, Italy].each {|country| self.new(country) }
+    end
   end
 end
