@@ -1,0 +1,3 @@
+class SixNations::team
+  
+end
