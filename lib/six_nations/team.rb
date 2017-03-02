@@ -1,6 +1,6 @@
 class SixNations::Team
   attr_accessor :stats, :players, :fixtures
-  attr_reader :name
+  attr_reader :name, :url
 
   @@all = []
 
@@ -9,6 +9,7 @@ class SixNations::Team
     @stats = {}
     @players = []
     @fixtures = []
+    @url = "http://www.rbs6nations.com/en/#{@name.downcase.strip}"
     @@all << self
   end
 
@@ -39,7 +40,7 @@ class SixNations::Team
   end
 
   def get_players
-    @players << SixNations::Player.create_all
+    @players << SixNations::Player.create_all("#{@url}/#{@name.downcase.strip}_squad.php")
   end
 
   def get_fixtures
