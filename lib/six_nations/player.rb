@@ -4,8 +4,11 @@ class SixNations::Player
 
   @@all = []
 
-  def initialize
-
+  def initialize(team)
+    @team = team
+    @name = "Name" #need to be scraped
+    @caps = "4" #need to be scraped
+    @points = "200" #need to be scraped
   end
 
 end#of Player
