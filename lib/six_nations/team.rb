@@ -8,6 +8,8 @@ module SixNations
     def initialize(name)
       @name = name
       @stats = {}
+      @players = []
+      @fixtures = []
       @@all << self
     end
 
@@ -21,7 +23,6 @@ module SixNations
 
     def self.get_stats
       @@all.each do |nation|
-        binding.pry
         nation.stats[:position] = "1"
         nation.stats[:games_played] = "3"
         nation.stats[:win] = "2"
@@ -34,6 +35,14 @@ module SixNations
         nation.stats[:user_bonus] = "5"
         nation.stats[:points] = "4"
       end
+    end
+
+    def get_players
+      @players << SixNations::Player.create_all
+    end
+
+    def get_fixtures
+      @fixtures << SixNations::Fixtures.create_all
     end
 
   end#of Team
