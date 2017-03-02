@@ -40,7 +40,7 @@ class SixNations::Team
   end
 
   def get_players
-    @players << SixNations::Player.create_all("#{@url}/#{@name.downcase.strip}_squad.php")
+    SixNations::Player.create_all("#{@url}/#{@name.downcase.strip}_squad.php", self)
   end
 
   def get_fixtures
