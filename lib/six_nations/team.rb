@@ -28,10 +28,12 @@ class SixNations::Team
       nation.stats[:draw] = "0"
       nation.stats[:loss] = "1"
       nation.stats[:points_for] = "5"
-      nation.stats[:points_agains] = "6"
+      nation.stats[:points_against] = "6"
       nation.stats[:point_diff] = "4"
+      nation.stats[:try_for] = "7"
+      nation.stats[:try_against] = "3"
       nation.stats[:try_bonus] = "6"
-      nation.stats[:user_bonus] = "5"
+      nation.stats[:loser_bonus] = "5"
       nation.stats[:points] = "4"
     end
   end
