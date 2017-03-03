@@ -31,14 +31,8 @@ class SixNations::Tournament
     away_team = "England" #to be scraped
 
     #find team using scraped team name string
-    teams.each do |team|
-      if home_team == team.name.strip
-        home_team = team
-      elsif away_team == team.name.strip
-        away_team = team
-      end
-    end
+    
 
-    @fixtures << SixNations::Fixtures.create_all(home_team, away_team)
+    @fixtures = SixNations::Fixtures.create_all(@teams)
   end
 end#of Tournament

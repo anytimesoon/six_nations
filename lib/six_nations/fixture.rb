@@ -17,10 +17,29 @@ class SixNations::Fixture
     @@all << self
   end
 
-  def create_all(home_team, away_team)
+  def create_all(teams)
+    @teams = teams
+
     html = open(@@url)
     doc = Nokogiri::HTML(html)
 
+    create_new_by_team_string(doc)
+    
+  end
+
+  def create_new_by_team_string(doc)
+
+    home_team = doc.css('.field_HomeDisplay').shift
+    away_team = doc.css('.field_AwayDisplay').shift
+
+    
+    teams.each do |team|
+      if home_team == team.name.strip
+        home_team = team
+      elsif away_team == team.name.strip
+        away_team = team
+      end
+    end
     
   end
 
