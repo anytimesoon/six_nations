@@ -2,6 +2,8 @@ class SixNations::CLI
 
   def start
     input = ""
+    puts "Please wait while data is downloaded..."
+    tourn = SixNations::Tournament.new
 
     while input != "exit" || input != "4"
       puts <<~DOC
@@ -16,7 +18,7 @@ class SixNations::CLI
       input = gets.strip.downcase
       case input
       when "1"
-        puts "current table"
+        tourn.display_table
       when "2"
         puts "upcomming fixtures"
       when "3"
