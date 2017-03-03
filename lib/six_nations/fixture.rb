@@ -19,16 +19,22 @@ class SixNations::Fixture
 
   def self.create_all(teams)
     @teams = teams
-
     html = open(@@url)
     doc = Nokogiri::HTML(html)
 
-    self.create_nested_array_of_teams(doc)
+    fixtures = self.create_nested_array_of_teams(doc)
+    round = 1
+    fixtures.each_with_index do |fixture, i|
+      if (i + 1) % 3 == 0
+        round += 1
+        binding.pry
+      end
+      self.new(fixture[0], fixture[1], round)
+    end
     
   end
 
   def self.create_nested_array_of_teams(doc)
-
     home_team = doc.css('.field_HomeDisplay')[1..-1]
     away_team = doc.css('.field_AwayDisplay')[1..-1]
     teams = []
@@ -41,9 +47,6 @@ class SixNations::Fixture
     end
 
     self.team_string_to_object(teams)
-    
-
-    
   end
 
   def self.team_string_to_object(team_names)
