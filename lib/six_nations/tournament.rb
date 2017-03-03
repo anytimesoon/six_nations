@@ -5,6 +5,7 @@ class SixNations::Tournament
     @nations = ["France  ", "England ", "Wales   ", "Scotland", "Ireland ", "Italy   "]
     @teams = SixNations::Team.create_all(@nations)
     SixNations::Team.get_stats
+    self.get_fixtures
   end
 
   def display_table

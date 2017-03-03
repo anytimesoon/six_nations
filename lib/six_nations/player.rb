@@ -4,16 +4,22 @@ class SixNations::Player
 
   @@all = []
 
-  def initialize(url, team)
+  def initialize(team, name, caps, points)
     @team = team
-    @name = "Name" #need to be scraped
-    @caps = "4" #need to be scraped
-    @points = "200" #need to be scraped
+    @name = name #need to be scraped
+    @caps = caps #need to be scraped
+    @points = points #need to be scraped
   end
 
   def self.create_all(url, team)
-    40.times do
-      team.players << self.new(url, team)
+    html = open(url)
+    doc = Nokogiri::HTML(html)
+    table = doc.css('.player_card')
+    table.each do |player|
+      name = player.css('.player_name p').text
+      caps = player.css('.player_caps_value p').text
+      points = player.css('.player_pts_value p').text
+      team.players << self.new(team, name, caps, points)
     end
   end
 
