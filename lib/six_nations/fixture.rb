@@ -17,29 +17,38 @@ class SixNations::Fixture
     @@all << self
   end
 
-  def create_all(teams)
+  def self.create_all(teams)
     @teams = teams
 
     html = open(@@url)
     doc = Nokogiri::HTML(html)
 
-    create_new_by_team_string(doc)
+    self.create_nested_array_of_teams(doc)
     
   end
 
-  def create_new_by_team_string(doc)
+  def self.create_nested_array_of_teams(doc)
 
-    home_team = doc.css('.field_HomeDisplay').shift
-    away_team = doc.css('.field_AwayDisplay').shift
-
+    home_team = doc.css('.field_HomeDisplay')[1..-1]
+    away_team = doc.css('.field_AwayDisplay')[1..-1]
+    teams = []
     
-    teams.each do |team|
-      if home_team == team.name.strip
-        home_team = team
-      elsif away_team == team.name.strip
-        away_team = team
-      end
+    home_team.each_with_index do |name, i|
+      fixture = []
+      fixture << name.text
+      fixture << away_team[i].text
+      teams << fixture
     end
+
+    teams
+    
+    # teams.each do |team|
+    #   if home_team == team.name.strip
+    #     home_team = team
+    #   elsif away_team == team.name.strip
+    #     away_team = team
+    #   end
+    # end
     
   end
 

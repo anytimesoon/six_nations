@@ -33,6 +33,6 @@ class SixNations::Tournament
     #find team using scraped team name string
     
 
-    @fixtures = SixNations::Fixtures.create_all(@teams)
+    @fixtures = SixNations::Fixture.create_all(@teams)
   end
 end#of Tournament
