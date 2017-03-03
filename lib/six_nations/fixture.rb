@@ -4,39 +4,38 @@ class SixNations::Fixture
   @@all = []
   @@url = "http://www.rbs6nations.com/en/matchcentre/fixtures_and_results.php"
 
-  def initialize(home_team, away_team, round)
+  def initialize(home_team, away_team, round, match_number)
     @teams = {}
     @teams[:home] = home_team
     @teams[:away] = away_team
     @round = round
-    @date = "02/02/17" #to be scraped
+    @date = @@doc.css("#fixturerow#{match_number} .field_DateDmyLong").text
     @time = {} #to be scraped
-    @time[:gmt] = "14:25" #to be scraped
-    @time[:local] = "15:25" #to be scraped
-    @venue = "Murrayfield" #to be scraped
+    @time[:gmt] = @@doc.css("#fixturerow#{match_number} .field_TimeLong").text
+    @time[:local] = @@doc.css("#fixturerow#{match_number} .field_UTCTimeLong").text
+    @venue = @@doc.css("#fixturerow#{match_number} .field_VenName").text
     @@all << self
   end
 
   def self.create_all(teams)
     @teams = teams
     html = open(@@url)
-    doc = Nokogiri::HTML(html)
+    @@doc = Nokogiri::HTML(html)
 
-    fixtures = self.create_nested_array_of_teams(doc)
+    fixtures = self.create_nested_array_of_teams
     round = 1
     fixtures.each_with_index do |fixture, i|
       if (i + 1) % 3 == 0
         round += 1
-        binding.pry
       end
-      self.new(fixture[0], fixture[1], round)
+      self.new(fixture[0], fixture[1], round, i)
     end
-    
+    @@all
   end
 
-  def self.create_nested_array_of_teams(doc)
-    home_team = doc.css('.field_HomeDisplay')[1..-1]
-    away_team = doc.css('.field_AwayDisplay')[1..-1]
+  def self.create_nested_array_of_teams
+    home_team = @@doc.css('.field_HomeDisplay')[1..-1]
+    away_team = @@doc.css('.field_AwayDisplay')[1..-1]
     teams = []
     
     home_team.each_with_index do |name, i|
