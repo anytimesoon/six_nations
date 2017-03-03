@@ -9,10 +9,10 @@ class SixNations::CLI
       puts <<~DOC
         Welcome to the Six Nations Ruby Gem
         Would you like to see:
-        1. current table
-        2. upcomming fixtures
-        3. find out more about a team
-        4. exit
+        1. Current table
+        2. Upcomming fixtures
+        3. Find out more about a team
+        4. Exit
       DOC
 
       input = gets.strip.downcase

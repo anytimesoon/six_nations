@@ -26,12 +26,12 @@ class SixNations::Team
     html = open(@@url)
     doc = Nokogiri::HTML(html)
     table = doc.css('.leaguetab')
-    
+
     @@all.each do |nation|
 
       row = table.search "[text()*='#{nation.name.strip}']"
       row = row.first.parent
-      
+
       nation.stats[:position] = row.css(".field_Position").text
       nation.stats[:games_played] = row.css(".field_Played").text
       nation.stats[:win] = row.css(".field_Win").text

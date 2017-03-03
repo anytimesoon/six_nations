@@ -37,7 +37,7 @@ class SixNations::Fixture
     home_team = @@doc.css('.field_HomeDisplay')[1..-1]
     away_team = @@doc.css('.field_AwayDisplay')[1..-1]
     teams = []
-    
+
     home_team.each_with_index do |name, i|
       fixture = []
       fixture << name.text
@@ -58,8 +58,8 @@ class SixNations::Fixture
         end
       end
     end
-    
-    team_names    
+
+    team_names
   end
 
 end#of Fixture

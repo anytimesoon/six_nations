@@ -32,7 +32,7 @@ class SixNations::Tournament
     away_team = "England" #to be scraped
 
     #find team using scraped team name string
-    
+
 
     @fixtures = SixNations::Fixture.create_all(@teams)
   end
