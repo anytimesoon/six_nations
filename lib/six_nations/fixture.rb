@@ -40,16 +40,24 @@ class SixNations::Fixture
       teams << fixture
     end
 
-    teams
+    self.team_string_to_object(teams)
     
-    # teams.each do |team|
-    #   if home_team == team.name.strip
-    #     home_team = team
-    #   elsif away_team == team.name.strip
-    #     away_team = team
-    #   end
-    # end
+
     
+  end
+
+  def self.team_string_to_object(team_names)
+    team_names.each do |fixture|
+      @teams.each do |nation|
+        if nation.name.strip == fixture[0]
+          fixture[0] = nation
+        elsif nation.name.strip == fixture[1]
+          fixture[1] = nation
+        end
+      end
+    end
+    
+    team_names    
   end
 
 end#of Fixture
