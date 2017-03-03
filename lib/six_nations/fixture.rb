@@ -2,6 +2,7 @@ class SixNations::Fixture
   attr_accessor :teams, :round, :date, :time, :venue
 
   @@all = []
+  @@url = "http://www.rbs6nations.com/en/matchcentre/fixtures_and_results.php"
 
   def initialize(home_team, away_team, round)
     @teams = {}
@@ -14,6 +15,13 @@ class SixNations::Fixture
     @time[:local] = "15:25" #to be scraped
     @venue = "Murrayfield" #to be scraped
     @@all << self
+  end
+
+  def create_all(home_team, away_team)
+    html = open(@@url)
+    doc = Nokogiri::HTML(html)
+
+    
   end
 
 end#of Fixture

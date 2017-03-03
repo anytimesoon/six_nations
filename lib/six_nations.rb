@@ -6,3 +6,5 @@ require_relative "six_nations/player"
 require_relative "six_nations/fixture"
 
 require "pry"
+require "nokogiri"
+require "open-uri"

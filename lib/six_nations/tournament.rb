@@ -30,7 +30,7 @@ class SixNations::Tournament
     home_team = "France" #to be scraped
     away_team = "England" #to be scraped
 
-    #find team using scraped team names
+    #find team using scraped team name string
     teams.each do |team|
       if home_team == team.name.strip
         home_team = team
@@ -39,6 +39,6 @@ class SixNations::Tournament
       end
     end
 
-    #@fixtures << SixNations::Fixtures.create_all
+    @fixtures << SixNations::Fixtures.create_all(home_team, away_team)
   end
 end#of Tournament
