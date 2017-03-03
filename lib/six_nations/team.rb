@@ -23,19 +23,19 @@ class SixNations::Team
 
   def self.get_stats
     @@all.each do |nation|
-      nation.stats[:position] = "1"
-      nation.stats[:games_played] = "3"
-      nation.stats[:win] = "2"
-      nation.stats[:draw] = "0"
-      nation.stats[:loss] = "1"
-      nation.stats[:points_for] = "5"
-      nation.stats[:points_against] = "6"
-      nation.stats[:point_diff] = "4"
-      nation.stats[:try_for] = "7"
-      nation.stats[:try_against] = "3"
-      nation.stats[:try_bonus] = "6"
-      nation.stats[:loser_bonus] = "5"
-      nation.stats[:points] = "4"
+      nation.stats[:position] = "1" #to be scraped
+      nation.stats[:games_played] = "3" #to be scraped
+      nation.stats[:win] = "2" #to be scraped
+      nation.stats[:draw] = "0" #to be scraped
+      nation.stats[:loss] = "1" #to be scraped
+      nation.stats[:points_for] = "5" #to be scraped
+      nation.stats[:points_against] = "6" #to be scraped
+      nation.stats[:point_diff] = "4" #to be scraped
+      nation.stats[:try_for] = "7" #to be scraped
+      nation.stats[:try_against] = "3" #to be scraped
+      nation.stats[:try_bonus] = "6" #to be scraped
+      nation.stats[:loser_bonus] = "5" #to be scraped
+      nation.stats[:points] = "4" #to be scraped
     end
   end
 

@@ -1,5 +1,5 @@
 class SixNations::Tournament
-  attr_accessor :teams, :nations
+  attr_accessor :teams, :nations, :fixtures
 
   def initialize
     @nations = ["France  ", "England ", "Wales   ", "Scotland", "Ireland ", "Italy   "]
@@ -24,5 +24,9 @@ class SixNations::Tournament
       rank[pos.to_i - 1] = team
     end
     rank
+  end
+
+  def get_fixtures
+    @fixtures << SixNations::Fixtures.create_all
   end
 end#of Tournament
