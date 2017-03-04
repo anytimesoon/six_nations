@@ -22,11 +22,17 @@ class SixNations::CLI
       when "2"
         puts "upcomming fixtures"
       when "3"
-        puts "Which team would you like to know about?"
+        puts <<~DOC 
+          Which team would you like to know about?
+          1. England
+          2. France
+          3. Ireland
+          4. Italy
+          5. Scotland
+          6. Wales
+        DOC
         requested_team = gets.strip.downcase
-        puts "What would you like to know about #{requested_team}?"
-        team_info = gets.strip.downcase
-        puts "Information you have requested"
+        self.team_menu(requested_team)
       when "4"
         puts "Thanks for playing. See you next time"
         break
@@ -35,4 +41,11 @@ class SixNations::CLI
       end
     end
   end
-end
+
+  def team_menu(requested_team)
+    puts "What would you like to know about #{requested_team}?"
+    team_info = gets.strip.downcase
+    puts "Information you have requested"
+  end
+  
+end#of CLI
