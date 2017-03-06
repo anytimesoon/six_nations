@@ -58,9 +58,28 @@ class SixNations::CLI
       team_name = "Wales"
     end
 
-    puts "What would you like to know about #{team_name}?"
+    puts <<~DOC
+      What would you like to know about #{team_name}?
+      1. Fixtures
+      2. Players
+      3. Back to main menu
+      4. Exit
+    DOC
+
+    team = tourn.find_team_by_name
     team_info = gets.strip.downcase
-    puts "Information you have requested"
+
+    case team_info
+    when '1'
+      team.display_fixtures
+    when "2"
+      team.display_players
+    when "3"
+      next
+    when "4"
+      break
+    end
+    
   end
 
 end#of CLI
