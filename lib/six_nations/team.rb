@@ -52,4 +52,13 @@ class SixNations::Team
     SixNations::Player.create_all("http://www.rbs6nations.com/en/#{@name.downcase}/#{@name.downcase}_squad.php", self)
   end
 
+  def display_players
+    table = Terminal::Table.new :headings => ['Name', 'Caps', 'Points']
+    @players.each do |player|
+      table.add_row [player.name, player.caps, player.points]
+    end
+
+    puts table
+  end
+
 end#of Team
