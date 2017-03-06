@@ -61,4 +61,13 @@ class SixNations::Team
     puts table
   end
 
+  def display_fixtures
+    table = Terminal::Table.new :headings => ['Round', 'Date', 'Local Time', 'GMT', 'Home Team', 'Away Team', 'Venue']
+    @fixtures.each do |fixture|
+      table.add_row [fixture.round, fixture.date, fixture.time[:local], fixture.time[:gmt], fixture.teams[:home].name, fixture.teams[:away].name, fixture.venue]
+    end
+
+    puts table
+  end
+
 end#of Team

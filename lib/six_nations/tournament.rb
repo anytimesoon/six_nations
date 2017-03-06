@@ -33,6 +33,14 @@ class SixNations::Tournament
 
   def get_fixtures
     @fixtures = SixNations::Fixture.create_all(@teams)
+    @teams.each do |team|
+      @fixtures.each do |fixture|
+        # binding.pry
+        if fixture.teams[:home] == team || fixture.teams[:away] == team
+          team.fixtures << fixture
+        end
+      end
+    end
   end
 
   def find_team_by_name(name)
