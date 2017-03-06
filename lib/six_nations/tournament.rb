@@ -32,12 +32,14 @@ class SixNations::Tournament
   end
 
   def get_fixtures
-    home_team = "France" #to be scraped
-    away_team = "England" #to be scraped
-
-    #find team using scraped team name string
-
-
     @fixtures = SixNations::Fixture.create_all(@teams)
+  end
+
+  def find_team_by_name(name)
+    @teams.each do |team|
+      if team.name == name
+        return team
+      end
+    end
   end
 end#of Tournament

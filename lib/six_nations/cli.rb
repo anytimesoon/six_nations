@@ -32,7 +32,7 @@ class SixNations::CLI
           6. Wales
         DOC
         requested_team = gets.strip.downcase
-        self.team_menu(requested_team)
+        self.team_menu(requested_team, tourn)
       when "4"
         puts "Thanks for playing. See you next time"
         break
@@ -42,7 +42,7 @@ class SixNations::CLI
     end
   end
 
-  def team_menu(requested_team)
+  def team_menu(requested_team, tourn)
     case requested_team
     when '1'
       team_name = "England"
@@ -66,20 +66,20 @@ class SixNations::CLI
       4. Exit
     DOC
 
-    team = tourn.find_team_by_name
+    team = tourn.find_team_by_name(team_name)
     team_info = gets.strip.downcase
-
+    
     case team_info
     when '1'
       team.display_fixtures
     when "2"
       team.display_players
     when "3"
-      next
+      puts "next"
     when "4"
-      break
+      puts "break"
     end
-    
+
   end
 
 end#of CLI
