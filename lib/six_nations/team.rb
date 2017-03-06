@@ -29,7 +29,7 @@ class SixNations::Team
 
     @@all.each do |nation|
 
-      row = table.search "[text()*='#{nation.name.strip}']"
+      row = table.search "[text()*='#{nation.name}']"
       row = row.first.parent
 
       nation.stats[:position] = row.css(".field_Position").text
@@ -49,7 +49,7 @@ class SixNations::Team
   end
 
   def get_players
-    SixNations::Player.create_all("http://www.rbs6nations.com/en/#{@name.downcase.strip}/#{@name.downcase.strip}_squad.php", self)
+    SixNations::Player.create_all("http://www.rbs6nations.com/en/#{@name.downcase}/#{@name.downcase}_squad.php", self)
   end
 
 end#of Team

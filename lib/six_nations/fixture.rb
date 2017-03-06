@@ -51,9 +51,9 @@ class SixNations::Fixture
   def self.team_string_to_object(team_names)
     team_names.each do |fixture|
       @teams.each do |nation|
-        if nation.name.strip == fixture[0]
+        if nation.name == fixture[0]
           fixture[0] = nation
-        elsif nation.name.strip == fixture[1]
+        elsif nation.name == fixture[1]
           fixture[1] = nation
         end
       end
