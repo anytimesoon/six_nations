@@ -6,14 +6,14 @@ class SixNations::CLI
     puts "Sit back, relax. Make yourself a cup of tea, or grab a beer."
     tourn = SixNations::Tournament.new
 
-    self.main_menu
+    self.main_menu(tourn)
 
   end
 
-  def main_menu
+  def main_menu(tourn)
     input = ""
     team_input = ""
-    
+
     while input != "4" do
 
       break if team_input == "4"
