@@ -1,12 +1,18 @@
 class SixNations::CLI
 
   def start
-    input = ""
-    team_input = ""
+
     puts "Please wait while data is downloaded. This might take some time depending on your internet connection."
     puts "Sit back, relax. Make yourself a cup of tea, or grab a beer."
     tourn = SixNations::Tournament.new
 
+    self.main_menu(tourn)
+
+  end
+
+  def main_menu(tourn)
+    input = ""
+    team_input = ""
 
     while input != "4" do
 
