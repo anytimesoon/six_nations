@@ -28,15 +28,12 @@ class SixNations::CLI
       when "2"
         tourn.display_fixtures
       when "3"
-        puts <<~DOC
-          Which team would you like to know about?
-          1. England
-          2. France
-          3. Ireland
-          4. Italy
-          5. Scotland
-          6. Wales
-        DOC
+        puts "Which team would you like to know about?"
+
+        tourn.teams.each_with_index do |team, i|
+          puts "#{i + 1}. #{team.name}"
+        end
+        
         requested_team = gets.strip.downcase
         team_input = self.team_menu(requested_team, tourn)
       when "4"
@@ -51,17 +48,17 @@ class SixNations::CLI
   def team_menu(requested_team, tourn)
     case requested_team
     when '1'
-      team_name = "England"
-    when '2'
       team_name = "France"
+    when '2'
+      team_name = "England"
     when '3'
-      team_name = "Ireland"
-    when '4'
-      team_name = "Italy"
-    when '5'
-      team_name = "Scotland"
-    when "6"
       team_name = "Wales"
+    when '4'
+      team_name = "Scotland"
+    when '5'
+      team_name = "Ireland"
+    when "6"
+      team_name = "Italy"
     end
 
     team_info = ""
