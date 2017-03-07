@@ -58,28 +58,29 @@ class SixNations::CLI
       team_name = "Wales"
     end
 
-    puts <<~DOC
-      What would you like to know about #{team_name}?
-      1. Fixtures
-      2. Players
-      3. Back to main menu
-      4. Exit
-    DOC
+    while team_info != "4"
+      puts <<~DOC
+        What would you like to know about #{team_name}?
+        1. Fixtures
+        2. Players
+        3. Back to main menu
+        4. Exit
+      DOC
 
-    team = tourn.find_team_by_name(team_name)
-    team_info = gets.strip.downcase
+      team = tourn.find_team_by_name(team_name)
+      team_info = gets.strip.downcase
 
-    case team_info
-    when '1'
-      team.display_fixtures
-    when "2"
-      team.display_players
-    when "3"
-      puts "next"
-    when "4"
-      puts "break"
+      case team_info
+      when '1'
+        team.display_fixtures
+      when "2"
+        team.display_players
+      when "3"
+        puts "next"
+      when "4"
+        puts "break"
+      end
     end
-
   end
 
 end#of CLI
