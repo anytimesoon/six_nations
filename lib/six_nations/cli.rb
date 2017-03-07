@@ -10,7 +10,7 @@ class SixNations::CLI
         Welcome to the Six Nations Ruby Gem
         Would you like to see:
         1. Current table
-        2. Upcomming fixtures
+        2. Fixtures
         3. Find out more about a team
         4. Exit
       DOC
@@ -20,7 +20,7 @@ class SixNations::CLI
       when "1"
         tourn.display_table
       when "2"
-        puts "upcomming fixtures"
+        tourn.display_fixtures
       when "3"
         puts <<~DOC
           Which team would you like to know about?
@@ -68,7 +68,7 @@ class SixNations::CLI
 
     team = tourn.find_team_by_name(team_name)
     team_info = gets.strip.downcase
-    
+
     case team_info
     when '1'
       team.display_fixtures

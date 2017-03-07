@@ -50,4 +50,29 @@ class SixNations::Tournament
       end
     end
   end
+
+  def display_fixtures
+    fixture_round = 1
+    while fixture_round < 6
+      table = Terminal::Table.new :title => "Round #{fixture_round}", :headings => ['Date', 'Local Time', 'GMT', 'Home Team', 'Away Team', 'Venue']
+      round = self.fixture_rounds(fixture_round)
+      # binding.pry
+      round.each do |fixture|
+        table.add_row [fixture.date, fixture.time[:local], fixture.time[:gmt], fixture.teams[:home].name, fixture.teams[:away].name, fixture.venue]
+      end
+      puts table
+      fixture_round += 1
+    end
+  end
+
+  def fixture_rounds(round)
+    returned_fixtures = []
+    @fixtures.each do |fixture|
+      if fixture.round == round
+        # binding.pry
+        returned_fixtures << fixture
+      end
+    end
+    returned_fixtures
+  end
 end#of Tournament
