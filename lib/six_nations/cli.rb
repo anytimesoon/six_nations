@@ -2,10 +2,16 @@ class SixNations::CLI
 
   def start
     input = ""
-    puts "Please wait while data is downloaded..."
+    team_input = ""
+    puts "Please wait while data is downloaded. This might take some time depending on your internet connection."
+    puts "Sit back, relax. Make yourself a cup of tea, or grab a beer."
     tourn = SixNations::Tournament.new
 
-    while input != "exit" || input != "4"
+
+    while input != "4" do
+
+      break if team_input == "4"
+
       puts <<~DOC
         Welcome to the Six Nations Ruby Gem
         Would you like to see:
@@ -32,7 +38,7 @@ class SixNations::CLI
           6. Wales
         DOC
         requested_team = gets.strip.downcase
-        self.team_menu(requested_team, tourn)
+        team_input = self.team_menu(requested_team, tourn)
       when "4"
         puts "Thanks for playing. See you next time"
         break
@@ -58,7 +64,8 @@ class SixNations::CLI
       team_name = "Wales"
     end
 
-    while team_info != "4"
+    team_info = ""
+    until team_info == "3" do
       puts <<~DOC
         What would you like to know about #{team_name}?
         1. Fixtures
@@ -75,10 +82,11 @@ class SixNations::CLI
         team.display_fixtures
       when "2"
         team.display_players
-      when "3"
-        puts "next"
       when "4"
-        puts "break"
+        puts "Thanks for your time. See you again soon."
+        return "4"
+      else
+        puts "Sorry, I didn't get that. Please enter 1, 2 or 3."
       end
     end
   end
