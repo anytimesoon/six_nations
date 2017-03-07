@@ -20,7 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Launch the app
+2. Use the menu to navigate through
+3. Get all the latest information on the Six Nations tournament
+4. Be happy
 
 ## Development
 

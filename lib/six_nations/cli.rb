@@ -33,7 +33,7 @@ class SixNations::CLI
         tourn.teams.each_with_index do |team, i|
           puts "#{i + 1}. #{team.name}"
         end
-        
+
         requested_team = gets.strip.downcase
         team_input = self.team_menu(requested_team, tourn)
       when "4"
@@ -79,6 +79,8 @@ class SixNations::CLI
         team.display_fixtures
       when "2"
         team.display_players
+      when "3"
+        puts ""
       when "4"
         puts "Thanks for your time. See you again soon."
         return "4"

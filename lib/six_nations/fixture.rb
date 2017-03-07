@@ -25,7 +25,6 @@ class SixNations::Fixture
     fixtures = self.create_nested_array_of_teams
     round = 1
     fixtures.each_with_index do |fixture, i|
-      # binding.pry
       self.new(fixture[0], fixture[1], round, i)
       if (i + 1) % 3 == 0
         round += 1
