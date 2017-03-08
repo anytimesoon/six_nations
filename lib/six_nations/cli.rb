@@ -1,12 +1,13 @@
 class SixNations::CLI
-  attr_accessor :tourn
+  attr_accessor :tourn, :teams
 
   def start
 
     puts "Please wait while data is downloaded. This might take some time depending on your internet connection."
     puts "Sit back, relax. Make yourself a cup of tea, or grab a beer."
     @tourn = SixNations::Tournament.new
-
+    @teams = []
+    
     self.main_menu
 
   end
@@ -39,10 +40,11 @@ class SixNations::CLI
 
         @tourn.teams.each_with_index do |team, i|
           puts "#{i + 1}. #{team.name}"
+          @teams << team.name
         end
 
-        requested_team = gets.strip.downcase
-        team_input = self.team_menu(requested_team, tourn)
+        requested_team = gets.strip.downcase.to_i - 1
+        team_input = self.team_menu(requested_team)
       when "4"
         puts "Thanks for playing. See you next time"
         break
@@ -53,32 +55,18 @@ class SixNations::CLI
   end
 
   def team_menu(requested_team)
-    case requested_team
-    when '1'
-      team_name = "France"
-    when '2'
-      team_name = "England"
-    when '3'
-      team_name = "Wales"
-    when '4'
-      team_name = "Scotland"
-    when '5'
-      team_name = "Ireland"
-    when "6"
-      team_name = "Italy"
-    end
 
     team_info = ""
     until team_info == "3" do
       puts <<~DOC
-        What would you like to know about #{team_name}?
+        What would you like to know about #{@teams[requested_team]}?
         1. Fixtures
         2. Players
         3. Back to main menu
         4. Exit
       DOC
 
-      team = @tourn.find_team_by_name(team_name)
+      team = @tourn.find_team_by_name(@teams[requested_team])
       team_info = gets.strip.downcase
 
       case team_info
