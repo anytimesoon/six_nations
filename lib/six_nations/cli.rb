@@ -1,16 +1,17 @@
 class SixNations::CLI
+  attr_accessor :tourn
 
   def start
 
     puts "Please wait while data is downloaded. This might take some time depending on your internet connection."
     puts "Sit back, relax. Make yourself a cup of tea, or grab a beer."
-    tourn = SixNations::Tournament.new
+    @tourn = SixNations::Tournament.new
 
-    self.main_menu(tourn)
+    self.main_menu
 
   end
 
-  def main_menu(tourn)
+  def main_menu
     input = ""
     team_input = ""
 
@@ -30,13 +31,13 @@ class SixNations::CLI
       input = gets.strip.downcase
       case input
       when "1"
-        tourn.display_table
+        @tourn.display_table
       when "2"
-        tourn.display_fixtures
+        @tourn.display_fixtures
       when "3"
         puts "Which team would you like to know about?"
 
-        tourn.teams.each_with_index do |team, i|
+        @tourn.teams.each_with_index do |team, i|
           puts "#{i + 1}. #{team.name}"
         end
 
@@ -51,7 +52,7 @@ class SixNations::CLI
     end
   end
 
-  def team_menu(requested_team, tourn)
+  def team_menu(requested_team)
     case requested_team
     when '1'
       team_name = "France"
@@ -77,7 +78,7 @@ class SixNations::CLI
         4. Exit
       DOC
 
-      team = tourn.find_team_by_name(team_name)
+      team = @tourn.find_team_by_name(team_name)
       team_info = gets.strip.downcase
 
       case team_info
